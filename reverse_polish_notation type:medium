@@ -1,0 +1,37 @@
+class Solution {
+    public int evalRPN(String[] tokens) {
+        return res(tokens);
+    }
+    Stack<Integer>stack=new Stack<>();
+    public int res(String str[]){
+        int d,d1;
+        for(int i=0;i<str.length;i++){
+            switch(str[i]){
+                case "+":
+                d=stack.pop();
+                d1=stack.pop();
+                stack.push(d1+d);
+                break;
+                case "-":
+                d=stack.pop();
+                d1=stack.pop();
+                stack.push(d1-d);
+                break;
+                case "*":
+                 d=stack.pop();
+                d1=stack.pop();
+                stack.push(d1*d); 
+                break;
+                case "/":
+                d=stack.pop();
+                d1=stack.pop();
+                stack.push(d1/d); 
+                break;
+                default:
+                int ele=Integer.parseInt(str[i]);
+                stack.push(ele);
+            }
+        }
+         return stack.peek();
+    }
+}
