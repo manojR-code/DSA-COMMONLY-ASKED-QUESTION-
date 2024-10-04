@@ -1,0 +1,23 @@
+class Solution {
+    public long dividePlayers(int[] skill) {
+        if(skill.length==2){
+            return skill[0]*skill[1];
+        }
+        int inc=0;
+        int dec=skill.length-1;
+        long cal=0;
+        long temp=0;
+        Arrays.sort(skill);
+        int equal=skill[0]+skill[skill.length-1];
+        while(inc<dec){
+           if(skill[inc]+skill[dec]!=equal){
+             return -1;
+           }
+           temp=skill[inc]*skill[dec];
+           cal+=temp;
+           inc++;
+           dec--;
+        }
+        return cal;
+    }
+}
