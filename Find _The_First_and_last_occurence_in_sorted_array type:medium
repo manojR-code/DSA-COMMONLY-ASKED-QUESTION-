@@ -1,0 +1,43 @@
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        boolean once=true;
+        int arr[]=new int[2];
+        arr=bin(nums,target,once);
+        return arr;
+    }
+    int[] bin(int[] arr,int tar,boolean once){
+    int end=arr.length-1;
+    int st=0;
+    int arrs[]=new int[2];
+    while(st<=end){
+        int mid=(st+end)/2;
+        if (arr[mid]==tar){
+            if(once){
+                st=mid-1;
+                end=mid+1;
+            }
+            once=false;
+            if(st>=0 && arr[st]==tar){
+                st--;
+            }
+            else if(end<arr.length && arr[end]==tar){
+                end++;
+            }
+            else{
+                arrs[0]=(st+1);
+                arrs[1]=(end-1);
+                return arrs;
+            }
+        }
+        else if(arr[mid]>tar){
+            end=mid-1;
+        }
+        else{
+            st=mid+1;
+        }
+    }
+    arrs[0]=-1;
+    arrs[1]=-1; 
+    return arrs;
+    }
+}
