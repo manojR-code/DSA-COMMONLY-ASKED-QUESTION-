@@ -1,0 +1,32 @@
+class Solution {
+    public int calPoints(String[] op) {
+        int cal=0;
+        Stack<Integer>st=new Stack<>();
+        for(int i=0;i<op.length;i++){
+              switch(op[i]){
+                case "C":
+                st.pop();
+                break;
+                case "D":
+                int ele=st.peek();
+                int val=2*ele;
+                st.push(val);
+                break;
+                case "+":
+                int one=st.pop();
+                int two=st.pop();
+                st.push(two);
+                st.push(one);
+                st.push(two+one);
+                break;
+                default:
+                st.push(Integer.parseInt(op[i]));
+              }
+        }
+      for(int obj : st)
+     {
+       cal+=obj;
+     }
+        return cal;
+    }
+}
