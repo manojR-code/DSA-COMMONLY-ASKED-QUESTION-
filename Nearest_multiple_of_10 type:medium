@@ -1,0 +1,43 @@
+class Solution:
+    def roundToNearest (self, strs) : 
+        #Complete the function
+        string=""
+        i=0
+        j=0
+        val=strs[len(strs)-1]
+        val2=strs[len(strs)-2]
+        index=len(strs)-2
+        if strs[len(strs)-1]=='0':
+            return strs
+        if int(val)<=5:
+            while i<len(strs)-1:
+                string+=strs[i]
+                i+=1
+            string+='0'
+            return string
+        elif int(val2)==9 and int(val)>5:
+            while int(strs[index])==9 and index>=0:
+                index-=1
+            if index<0:
+                index=0
+            ele=int(strs[index])
+            ele+=1
+            while j<index:
+                string+=strs[j]
+                j+=1
+            string+=str(ele)
+            while j+1<len(strs):
+                string+='0'
+                j+=1
+        else:
+            ele=int(val2)
+            ele+=1
+            while i<len(strs):
+                if i==len(strs)-2:
+                    string+=str(ele)
+                    break
+                else:
+                    string+=strs[i]
+                i+=1
+            string+='0'
+        return string
