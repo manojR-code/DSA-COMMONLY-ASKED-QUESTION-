@@ -1,0 +1,67 @@
+/*
+class Node{
+    int data;
+    Node next;
+
+    Node(int x){
+        data = x;
+        next = null;
+    }
+}
+*/
+
+class Solution {
+    public Node addOne(Node head) {
+        // code here.
+        String see="";
+        Node tr,tr1;
+        tr=head;
+        tr1=head;
+        Node es;
+        es=head;
+        String temp="";
+        while(tr!=null){
+            see+=String.valueOf(tr.data);
+            tr=tr.next;
+        }
+        if(see.charAt(see.length()-1)!='9'){
+            while(tr1.next!=null){
+            tr1=tr1.next;
+        }
+        tr1.data=tr1.data+1;
+        return head;
+        }else{
+            Node p1,p2;
+            p1=head;
+            p2=head.next;
+            int went=0;
+            int si=see.length()-1;
+            int ors=see.length()-1;
+            while(si>=0 && see.charAt(si)=='9'){
+             ors--;   
+             si--;
+            }
+            if(ors<0){
+                Node node=new Node(1);
+                while(es!=null){
+                    es.data=0;
+                    es=es.next;
+                }
+                node.next=head;
+                head=node;
+                return head;
+            }
+            while(p2!=null){
+                if(went>=ors){
+                    p2.data=0;
+                }else{
+                    p1=p1.next;
+                }
+                went++;
+                p2=p2.next;
+            }
+            p1.data=p1.data+1;
+        }
+        return head;
+    }
+}
