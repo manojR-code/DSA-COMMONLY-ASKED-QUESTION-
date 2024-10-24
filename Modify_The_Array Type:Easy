@@ -1,0 +1,27 @@
+class Solution {
+    static ArrayList<Integer> modifyAndRearrangeArr(int arr[]) {
+        // Complete the function
+        ArrayList<Integer>li=new ArrayList<Integer>(arr.length);
+        int j=0;
+        while(j<arr.length){
+            li.add(j,0);
+            j++;
+        }
+        int st=0;
+        for(int i=0;i<arr.length-1;i++){
+         if(arr[i]!=0 && arr[i+1]!=0 && arr[i]==arr[i+1]){
+                li.set(st,arr[i]+arr[i]);
+                st++;
+                arr[i+1]=0;
+            }else if(arr[i]!=0){
+                li.set(st,arr[i]);
+                st++;
+            }
+           
+        }
+        if(arr[arr.length-1]!=0){
+            li.set(st,arr[arr.length-1]);
+        }
+        return li;
+    }
+}
