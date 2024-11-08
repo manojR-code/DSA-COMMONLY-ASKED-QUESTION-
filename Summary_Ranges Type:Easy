@@ -1,0 +1,25 @@
+class Solution {
+    public List<String> summaryRanges(int[] nums) {
+       Map<Integer,Integer>li=new HashMap<>();
+       List<String>str=new ArrayList<>();
+       for(int i:nums) li.put(i,0);
+       int ele=0;
+       int op=0;
+       int inc=0;
+       for(int i=0;i<nums.length;i++){
+          ele=nums[i];
+          op=ele;
+          while(li.containsKey(op)){
+            op++;
+            inc++;
+          }
+          if(Math.abs(ele)==Math.abs(op-1)){
+            str.add(String.valueOf(ele));
+          }else{
+            str.add(String.valueOf(ele)+"->"+String.valueOf(op-1));
+          }
+          i=inc-1;
+       }
+       return str;
+    }
+}
