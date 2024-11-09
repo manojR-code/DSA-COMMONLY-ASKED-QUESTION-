@@ -1,0 +1,84 @@
+class Solution {
+    String minSum(int[] arr) {
+        // code here
+        Arrays.sort(arr);
+        StringBuilder ans=new StringBuilder();
+        StringBuilder one=new StringBuilder();
+        StringBuilder two=new StringBuilder();
+        String ones="";
+        String twos="";
+        int size=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]==0){
+                size++;
+                continue;
+            }
+            if(i%2==0){
+                one.append(String.valueOf(arr[i]));
+            }else{
+                 two.append(String.valueOf(arr[i]));
+            }
+        }
+        if(size==arr.length){
+            return "0";
+        }
+        ones=one.reverse().toString();
+        twos=two.reverse().toString();
+        int i,j;
+        i=0;
+        j=0;
+        int carry=0;
+        while(i<ones.length() || j<twos.length()){
+            if(i<ones.length() && j<twos.length()){
+                int ele=ones.charAt(i)-48;
+                int ele1=twos.charAt(j)-48;
+                int sum=ele+ele1+carry;
+                if(sum>9){
+                    ans.append(String.valueOf(sum%10));
+                    sum=sum/10;
+                    carry=sum;
+                }else{
+                    
+                    ans.append(String.valueOf(sum));
+                    carry=0;
+                }
+                i++;
+                j++;
+            }else if(j<twos.length() && i>=ones.length()){
+                if(carry>=0){
+                    int onesss=twos.charAt(j)-48;
+                    int sum=onesss+carry;
+                    if(sum>9){
+                    ans.append(String.valueOf(sum%10));
+                    sum=sum/10;
+                    carry=sum;
+                    }else{
+                    ans.append(String.valueOf(sum));
+                    carry=0;
+                    }
+                }
+                j++;
+            }else if(i<ones.length() && j>=twos.length()){
+                if(carry>=0){
+                    int oness=ones.charAt(i)-48;
+                    int sum=oness+carry;
+                    if(sum>9){
+                    ans.append(String.valueOf(sum%10));
+                    sum=sum/10;
+                    carry=sum;
+                    }else{
+                    ans.append(String.valueOf(sum));
+                    carry=0;
+                    }
+                }
+                i++;
+            }
+            
+        }
+        if(carry>=1){
+            ans.append(String.valueOf(carry));
+        }
+      
+        return ans.reverse().toString();
+    }
+}
