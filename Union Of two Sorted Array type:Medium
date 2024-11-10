@@ -1,0 +1,35 @@
+class Solution {
+    // Function to return a list containing the union of the two arrays.
+    public static ArrayList<Integer> findUnion(int a[], int b[]) {
+        // add your code here
+     ArrayList<Integer> li = new ArrayList<>();
+     int point = 0;
+     int point1 = 0;
+     while (point < a.length && point1 < b.length) {
+         if (a[point] == b[point1]) {
+             li.add(a[point]);
+             point++;
+             point1++;
+         } else if (a[point] > b[point1]) {
+             li.add(b[point1]);
+             point1++;
+         } else {
+             li.add(a[point]);
+             point++;
+         }
+     }
+     if (point < a.length) {
+         for (int i = point; i < a.length; i++) {
+             li.add(a[i]);
+             point++;
+         }
+     }
+     if (point1<b.length) {
+        for (int i = point1; i < b.length; i++) {
+            li.add(b[i]);
+            point1++;
+        }
+     }
+     return li;
+    }
+}
